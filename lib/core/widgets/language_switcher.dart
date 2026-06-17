@@ -1,3 +1,6 @@
+import 'package:e_chat/core/app_constants/context_ext.dart';
+import 'package:e_chat/core/utils/app_colors.dart';
+import 'package:e_chat/core/utils/font_details.dart';
 import 'package:e_chat/shared_widgets/custom_text.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +23,7 @@ class LanguageSwitcher extends StatelessWidget {
     );
 
     final selected = await showMenu<Locale>(
+      color: context.color.popupMenu,
       context: context,
       position: position,
       items: [
@@ -27,13 +31,13 @@ class LanguageSwitcher extends StatelessWidget {
           value: const Locale('en'),
           child: Row(
             children: [
-              const Text('🇬🇧'),
+              CustomTextWidget(text: '🇬🇧', textStyle: TextStyle(fontSize: FontDetails.fontSizeM)),
               const SizedBox(width: 8),
-              Text('english'.tr()),
+              CustomTextWidget(text: 'english'.tr(), textStyle: TextStyle(color: context.color.textColor,fontSize: FontDetails.fontSizeM),),
               if (context.locale.languageCode == 'en')
-                const Padding(
-                  padding: EdgeInsets.only(left: 8),
-                  child: Icon(Icons.check, size: 16),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.w, right: 8.h),
+                  child: Icon(Icons.check, size: FontDetails.fontSizeM, color: context.color.textColor,),
                 ),
             ],
           ),
@@ -42,13 +46,13 @@ class LanguageSwitcher extends StatelessWidget {
           value: const Locale('ar'),
           child: Row(
             children: [
-              const CustomTextWidget(text: '🇸🇦'),
+              CustomTextWidget(text: '🇸🇦',textStyle: TextStyle(fontSize: FontDetails.fontSizeM)),
               const SizedBox(width: 8),
-              CustomTextWidget(text: 'arabic'.tr()),
+              CustomTextWidget(text: 'arabic'.tr(), textStyle: TextStyle(color: context.color.textColor,fontSize: FontDetails.fontSizeM),),
               if (context.locale.languageCode == 'ar')
-                const Padding(
-                  padding: EdgeInsets.only(left: 8),
-                  child: Icon(Icons.check, size: 16),
+                Padding(
+                  padding: EdgeInsets.only(left: 8.h),
+                  child: Icon(Icons.check, size: FontDetails.fontSizeM, color: context.color.textColor,),
                 ),
             ],
           ),
@@ -65,53 +69,9 @@ class LanguageSwitcher extends StatelessWidget {
   Widget build(BuildContext context) {
     return Builder(
       builder: (innerContext) => IconButton(
-        icon: const Icon(Icons.language),
+        icon: Icon(Icons.language, color: ColorsLight.white,size: FontDetails.fontSizeL,),
         tooltip: 'language'.tr(),
         onPressed: () => _showLanguageMenu(innerContext),
-      ),
-    );
-  }
-}
-
-class LanguageToggleButton extends StatelessWidget {
-  const LanguageToggleButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final isArabic = context.locale.languageCode == 'ar';
-
-    return ElevatedButton.icon(
-      onPressed: () {
-        if (isArabic) {
-          context.setLocale(const Locale('en'));
-        } else {
-          context.setLocale(const Locale('ar'));
-        }
-      },
-      icon: const Icon(Icons.language),
-      label: CustomTextWidget(text: isArabic ? 'english'.tr() : 'arabic'.tr()),
-    );
-  }
-}
-
-class LanguageTextButton extends StatelessWidget {
-  const LanguageTextButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final isArabic = context.locale.languageCode == 'ar';
-
-    return TextButton(
-      onPressed: () {
-        if (isArabic) {
-          context.setLocale(const Locale('en'));
-        } else {
-          context.setLocale(const Locale('ar'));
-        }
-      },
-      child: CustomTextWidget(
-        text: isArabic ? 'english'.tr() : 'arabic'.tr(),
-        textStyle: TextStyle(fontSize: 16.sp),
       ),
     );
   }

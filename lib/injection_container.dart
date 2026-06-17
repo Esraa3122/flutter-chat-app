@@ -11,11 +11,12 @@ import 'package:e_chat/core/network/connectivity_cubit/connectivity_cubit.dart';
 import 'package:e_chat/core/services/contact_service.dart';
 import 'package:e_chat/core/services/location_service.dart';
 import 'package:e_chat/core/services/permission_service.dart';
-import 'package:e_chat/features/first_feature/data/data_sources/first_feature_remote_data_source.dart';
-import 'package:e_chat/features/first_feature/data/repositories/first_feature_repo_impl.dart';
-import 'package:e_chat/features/first_feature/domain/repositories/first_feature_repo.dart';
-import 'package:e_chat/features/first_feature/domain/use_cases/first_feature_uc.dart';
-import 'package:e_chat/features/first_feature/presentation/manager/cat_fact_cubit.dart';
+import 'package:e_chat/features/chats/data/data_sources/chats_remote_data_source.dart';
+import 'package:e_chat/features/chats/data/data_sources/mock_database.dart';
+import 'package:e_chat/features/chats/data/repositories/chats_repository_impl.dart';
+import 'package:e_chat/features/chats/domain/repositories/chats_repositories.dart';
+import 'package:e_chat/features/chats/domain/use_cases/get_chat_use_case.dart';
+import 'package:e_chat/features/chats/presentation/manager/get_chats_cubit/get_chats_cubit.dart';
 import 'package:flutter/foundation.dart';
 import 'package:get_it/get_it.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -35,31 +36,33 @@ Future<void> getItInit() async {
   //! Features
 
   /// Blocs
-  getIt.registerFactory<CatFactCubit>(() => CatFactCubit(featureUc: getIt()));
   getIt.registerFactory<AppCubit>(() => AppCubit());
   getIt.registerFactory<ConnectivityCubit>(() => ConnectivityCubit(networkInfo: getIt()));
   getIt.registerFactory<UploadImageCubit>(
       () => UploadImageCubit(featureUc: getIt()));
+   getIt.registerFactory<GetChatsCubit>(
+      () => GetChatsCubit(getChatsUseCase: getIt()));
 
   /// Use cases
-  getIt.registerLazySingleton<FirstFeatureUc>(
-      () => FirstFeatureUc(firstFeatureRepository: getIt()));
   getIt.registerLazySingleton<UploadImageUseCase>(
       () => UploadImageUseCase(uploadImageRepositories: getIt()));
+  getIt.registerLazySingleton<GetChatsUseCase>(
+      () => GetChatsUseCase(chatsRepositories: getIt()));
 
   /// Repository
-  getIt.registerLazySingleton<FirstFeatureRepository>(() =>
-      FirstFeatureRepositoryImpl(
-          networkInfo: getIt(), firstFeatureRemoteDataSource: getIt()));
   getIt.registerLazySingleton<UploadImageRepositories>(() =>
       UploadImageRepositoriesImpl(
           networkInfo: getIt(), uploadImageDataSource: getIt()));
+  getIt.registerLazySingleton<ChatsRepositories>(() => ChatsRepositoryImpl(
+      networkInfo: getIt(), chatsRemoteDataSource: getIt()));
 
   /// Data Sources
-  getIt.registerLazySingleton<FirstFeatureRemoteDataSource>(
-      () => FirstFeatureRemoteDataSourceImpl(client: getIt()));
   getIt.registerLazySingleton<UploadImageRemoteDataSource>(
       () => UploadImageRemoteDataSourceImpl());
+  getIt.registerLazySingleton<ChatsRemoteDataSource>(
+      () => ChatsRemoteDataSourceImpl(mockChatDataSource: getIt()));
+  getIt.registerLazySingleton<MockChatLocalDataSource>(
+      () => MockChatLocalDataSourceImpl(hiveHelper: getIt()));
 
   /// Core
   getIt.registerLazySingleton<NetworkInfo>(

@@ -65,13 +65,15 @@ Network Simulation: To make the mock feel real, I simulated network latency usin
 
 Auto-Reply & Realism: When the user sends a message, it transitions from sending ⏱️ -> sent ✔️ -> delivered ✔️✔️. After a simulated delay, the mock friend will transition to a "Typing..." state, the message is marked as read (blue ticks), and an auto-reply is generated and saved locally.
 
-🔮 What I Would Improve Given More Time
-While the foundation is solid, here is what I would add with more time:
+## What I Would Improve Given More Time
 
-Unit & Widget Testing: Write comprehensive tests for the UseCases, Cubits, and core UI components using mockito and bloc_test.
+While the current foundation is solid and meets the core mock requirements, my technical roadmap for scaling this application includes:
 
-Pagination: Implement lazy loading/pagination in the ListView to handle rooms with thousands of messages without performance hits.
-
-Real Media Picker: Replace the simulated pending image attachment with image_picker to allow users to select real photos from their gallery/camera.
-
-Animations: Add flutter_animate for smoother transitions when new messages enter the chat bubble list.
+1. **Automated Testing:** Implement the comprehensive Unit and Widget tests mentioned in the task requirements to ensure maximum reliability, prevent regressions, and guarantee a bulletproof business logic.
+2. **Real Backend Integration:** Swap the mock local data source with a live backend API (e.g., RESTful API, WebSockets, or Firebase), seamlessly plugging it into the existing Clean Architecture Data Layer without altering the UI.
+3. **Rich Media Sharing:** Expand the attachment features to support recording/sending voice notes and uploading various file formats (PDFs, documents, etc.).
+4. **Chat Management:** Implement delete functionalities, allowing users to unsend/delete specific messages and clear or delete entire conversations.
+5. **Group Messaging:** Introduce the ability to create group chats, add participants, and manage basic group info.
+6. **Contact Management:** Build a user discovery system to search for people, send friend requests, and seamlessly add new contacts.
+7. **Status/Stories Feature:** Add a "Stories" feature, allowing users to share ephemeral 24-hour photo or video updates with their contacts.
+8. **Voice Calls:** Integrate VoIP technology (using WebRTC or an SDK like Agora) to enable real-time, seamless voice calling between users.

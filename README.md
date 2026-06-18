@@ -1,21 +1,21 @@
-# Mock Chat Application (Flovoo Technical Task) 💬
+# Mock Chat Application (E Chat) 
 
 A fully functional, offline-first mock chat application built with Flutter. This project demonstrates strict adherence to Clean Architecture principles, reactive state management, and seamless UI/UX, built without a real backend but designed to be API-ready.
 
-## 🚀 How to Run the Project
+## How to Run the Project
 
 1. Ensure you have the [Flutter SDK](https://docs.flutter.dev/get-started/install) installed.
 2. Clone this repository.
 3. Open a terminal in the project root directory and run:
    ```bash
    flutter pub get
-Run the app on an emulator or physical device:
+4. Run the app on an emulator or physical device:
+    ```bash
+    flutter run
 
-Bash
-flutter run
 (Note: Upon the first launch, the app seeds the local database with mock conversations to allow immediate testing of features like search and chat history).
 
-🏗️ Architectural Decisions
+## Architectural Decisions
 I strictly followed Clean Architecture (Presentation, Domain, Data) to ensure the codebase is scalable, testable, and highly maintainable.
 
 The Swappability Factor (Data Layer Structure):
@@ -27,7 +27,7 @@ The Data layer implements these via a LocalDataSource using Hive.
 
 If a real REST API or WebSocket/Firebase is introduced later, we simply create a RemoteDataSourceImpl, inject it into the Repository, and the entire UI and Business Logic will remain 100% untouched.
 
-🧠 State Management Choice
+##  State Management Choice
 I chose Cubit (flutter_bloc) for state management.
 Reasoning:
 
@@ -37,22 +37,28 @@ Predictability: Emitting distinct states (Loading, Loaded, Error) makes handling
 
 Less Boilerplate: Cubit offers the reactive power of Bloc without the overhead of defining events, which is ideal for the straightforward data flow of a chat app while keeping the code clean and readable.
 
-📦 Third-Party Packages & Justifications
-flutter_bloc: For predictable, reactive state management.
+##  Third-Party Packages & Justifications
+* **`flutter_bloc`**: For predictable, reactive state management.
+* **`hive` & `hive_flutter`**: A lightweight, blazing-fast NoSQL local database used to simulate backend persistence and support offline-first capabilities.
+* **`get_it`**: A service locator for Dependency Injection (DI), essential for keeping layers decoupled and swapping data sources easily.
+* **`go_router`**: For declarative routing and seamless passing of arguments (like Chat Entities) between screens.
+* **`intl`**: For formatting timestamps dynamically (e.g., "Today • 04:05 AM" or converting dates to localized strings).
+* **`easy_localization`**: To handle language translation (e.g., "Typing..." / "Yesterday"), ensuring the app is scalable for different locales.
+* **`cached_network_image`**: To cache dummy profile pictures efficiently and prevent unnecessary re-downloading.
+* **`flutter_screenutil`**: For dynamic UI responsiveness, ensuring text, padding, and widget sizes adapt beautifully across different screen dimensions.
+* **`connectivity_plus` & `internet_connection_checker`**: Working together to listen to network state changes and verify active internet access, which triggers the offline message synchronization logic.
+* **`swipe_to`**: To provide an intuitive, native-like user experience by allowing users to swipe on chat bubbles to trigger replies.
+* **`url_launcher`**: To launch external applications seamlessly for actions like making phone calls, opening email clients, or loading map URLs.
+* **`geolocator` & `geocoding`**: Used to fetch the user's current GPS coordinates and handle location-based operations for the map feature.
+* **`permission_handler`**: To securely request and manage system permissions (like Location or Contacts) before accessing device hardware.
+* **`lottie`**: To render high-quality, lightweight vector animations for empty states (e.g., the empty chat room background).
+* **`day_night_themed_switcher`**: Used to provide a smooth, visually appealing animated toggle for switching between Light and Dark themes.
+* **`animate_do`**: To implement beautiful, lightweight, and declarative animations (like fade-ins for chat lists) with minimal boilerplate.
+* **`flutter_contacts`**: To seamlessly access and handle the device's native contacts, powering the feature to share contact cards within the chat.
+* **`flutter_native_splash`**: To configure and generate a seamless, native splash screen for both Android and iOS, providing a polished initial load experience.
+* **`flutter_launcher_icons`**: A development tool used to automatically generate app icons for iOS and Android, ensuring consistent branding across devices.
 
-hive & hive_flutter: A lightweight, blazing-fast NoSQL local database used to simulate backend persistence and support offline-first capabilities.
-
-get_it: A service locator for Dependency Injection (DI), essential for keeping layers decoupled and swapping data sources easily.
-
-go_router: For declarative routing and seamless passing of arguments (like Chat Entities) between screens.
-
-intl: For formatting timestamps dynamically (e.g., "Today • 04:05 AM" or converting dates to localized strings).
-
-easy_localization: To handle language translation (e.g., "Typing..." / "Yesterday"), ensuring the app is scalable for different locales.
-
-cached_network_image: To cache dummy profile pictures efficiently and prevent unnecessary re-downloading.
-
-📌 Notes & Assumptions
+## Notes & Assumptions
 Database Seeding: Since no backend is provided, I assumed the reviewer needs immediate data to test the UI. The local database seeds itself with dummy chats and users on the very first run.
 
 Network Simulation: To make the mock feel real, I simulated network latency using Future.delayed.
@@ -69,6 +75,3 @@ Pagination: Implement lazy loading/pagination in the ListView to handle rooms wi
 Real Media Picker: Replace the simulated pending image attachment with image_picker to allow users to select real photos from their gallery/camera.
 
 Animations: Add flutter_animate for smoother transitions when new messages enter the chat bubble list.
-
-
-***

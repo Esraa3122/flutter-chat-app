@@ -92,21 +92,21 @@ class CustomTextFormFieldWidget extends StatelessWidget {
                 ? OutlineInputBorder(
                     borderSide: BorderSide(
                         color: ColorsLight.mainTextColor, width: 0.5.w),
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(20.r),
                   )
                 : OutlineInputBorder(
                     borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(20.r),
                   ),
             focusedBorder: withBorders
                 ? OutlineInputBorder(
                     borderSide:
                         BorderSide(color: ColorsDark.blueDark, width: 0.5.w),
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(20.r),
                   )
                 : OutlineInputBorder(
                     borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(20.r),
                   ),
             errorBorder: withBorders
                 ? OutlineInputBorder(
@@ -116,17 +116,17 @@ class CustomTextFormFieldWidget extends StatelessWidget {
                   )
                 : OutlineInputBorder(
                     borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(20.r),
                   ),
             focusedErrorBorder: withBorders
                 ? OutlineInputBorder(
                     borderSide:
                         BorderSide(color: ColorsLight.error, width: 0.5.w),
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(20.r),
                   )
                 : OutlineInputBorder(
                     borderSide: BorderSide.none,
-                    borderRadius: BorderRadius.circular(8.r),
+                    borderRadius: BorderRadius.circular(20.r),
                   ),
           ),
         )

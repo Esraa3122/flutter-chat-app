@@ -1,4 +1,4 @@
-import 'package:e_chat/features/chats/data/data_sources/mock_database.dart';
+import 'package:e_chat/features/chats/data/data_sources/chat_local_data_source.dart';
 import 'package:e_chat/features/chats/data/models/chats_model.dart';
 
 abstract class ChatsRemoteDataSource {
@@ -6,7 +6,7 @@ abstract class ChatsRemoteDataSource {
 }
 
 class ChatsRemoteDataSourceImpl implements ChatsRemoteDataSource {
-  final MockChatLocalDataSource mockChatDataSource;
+  final ChatLocalDataSource mockChatDataSource;
 
   ChatsRemoteDataSourceImpl({required this.mockChatDataSource});
 

@@ -12,11 +12,11 @@ class UrlLauncherService {
   }
 
   Future<void> openMap(String lat, String lng) async {
-    final Uri url = Uri.parse('https://www.google.com/maps/search/?api=1&query=$lat,$lng');
-    if (await canLaunchUrl(url)) {
-      launchUrl(url, mode: LaunchMode.externalApplication);
-    } else {
-      throw 'Could not launch $url';
+    final String googleMapsUrl = 'https://www.google.com/maps/search/?api=1&query=$lat,$lng';
+    final Uri url = Uri.parse(googleMapsUrl);
+    
+    if (!await launchUrl(url, mode: LaunchMode.externalApplication)) {
+      throw 'Could not launch Map';
     }
   }
   

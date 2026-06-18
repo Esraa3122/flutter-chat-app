@@ -7,6 +7,8 @@ class ChatsEntity {
   final String? friendName;
   final String? friendImage;
   final int? unreadCount;
+  final String? phone;
+  final String? countryCode;
 
   ChatsEntity(
       {this.id,
@@ -16,5 +18,7 @@ class ChatsEntity {
       this.createdAt,
       this.friendName,
       this.friendImage,
-      this.unreadCount});
+      this.unreadCount,
+      this.phone,
+      this.countryCode});
 }

@@ -87,6 +87,24 @@
 			<string>UIInterfaceOrientationLandscapeLeft</string>
 			<string>UIInterfaceOrientationLandscapeRight</string>
 		</array>
+		<!-- Camera & Photo Library -->
+		<key>NSCameraUsageDescription</key>
+		<string>Used to take photos and videos to send in chat</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+		<string>Used to select photos and videos to send in chat</string>
+		<key>NSPhotoLibraryAddUsageDescription</key>
+		<string>Used to save received media to your photo library</string>
+		<!-- Contacts (invite contacts) -->
+		<key>NSContactsUsageDescription</key>
+		<string>Used to find and invite your contacts</string>
+		<!-- Location (share location in chat) -->
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>Used to share your location in chat</string>
+		<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+		<string>Used to share your location in chat</string>
+		<!-- Network access description (required by some App Store reviewers) -->
+		<key>NSLocalNetworkUsageDescription</key>
+		<string>Used to connect to services</string>
 		<key>UIStatusBarHidden</key>
 		<false/>
 	</dict>

@@ -1,4 +1,5 @@
 import 'package:e_chat/features/chats/domain/entities/chats_entity.dart';
+import 'package:easy_localization/easy_localization.dart';
 
 class ChatsModel extends ChatsEntity {
   ChatsModel({
@@ -10,6 +11,8 @@ class ChatsModel extends ChatsEntity {
     super.friendName,
     super.friendImage,
     super.unreadCount,
+    super.phone,
+    super.countryCode,
   });
 
   factory ChatsModel.fromJson(Map<String, dynamic> json) => ChatsModel(
@@ -18,9 +21,11 @@ class ChatsModel extends ChatsEntity {
         lastMessage: json["last_message"] ?? "",
         lastMessageTime: _parseDate(json["last_message_time"]),
         createdAt: _parseDate(json["created_at"]),
-        friendName: json["friend_name"] ?? "Unknown",
+        friendName: json["friend_name"] ?? "unknown".tr(),
         friendImage: json["friend_image"] ?? "",
         unreadCount: json["unread_count"] ?? 0,
+        phone: json["phone"] ?? "1234567891",
+        countryCode: json['country_code'] ?? "+20",
       );
 
   Map<String, dynamic> toJson() => {
@@ -32,6 +37,8 @@ class ChatsModel extends ChatsEntity {
         "friend_name": friendName,
         "friend_image": friendImage,
         "unread_count": unreadCount,
+        "phone": phone,
+        "country_code": countryCode,
       };
 
   static DateTime _parseDate(dynamic dateData) {

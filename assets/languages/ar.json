@@ -43,5 +43,6 @@
     "success": "نجاح",
     "the_image_has_been_uploaded_successfully": "تم رفع الصوره بنجاح",
     "me": "انا",
-    "loading_error": "خطأ في التحميل"
+    "loading_error": "خطأ في التحميل",
+    "typing...": "يكتب ..."
 }

@@ -4,12 +4,13 @@ import 'package:lottie/lottie.dart';
 
 class AppImages {
   static const String path = 'assets/images';
+  static const String path2 = 'assets/lottie';
   static const String appLogoImgLight = '$path/e_chat_app_logo.png';
   static const String appLogoImgDark = '$path/e_chat_app_logo_dark.png';
   static const String bG = '$path/BG.png';
-  static const String bgEmptyChatScreen = '$path/Share.json';
-  static const String nonDataFound = '$path/non data found.json';
-  static const String loading = '$path/Loading Dots Blue.json';
+  static const String bgEmptyChatScreen = '$path2/Share.json';
+  static const String nonDataFound = '$path2/non data found.json';
+  static const String loading = '$path2/Loading Dots Blue.json';
 
   static Widget showImg({
     required String imgPath,

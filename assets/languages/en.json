@@ -43,5 +43,6 @@
     "success": "Success",
     "the_image_has_been_uploaded_successfully": "The image has been uploaded successfully",
     "me": "Me",
-    "loading_error": "Loading error"
+    "loading_error": "Loading error",
+    "typing...": "Typing..."
 }

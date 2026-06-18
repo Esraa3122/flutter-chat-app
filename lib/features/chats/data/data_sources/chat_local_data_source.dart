@@ -27,13 +27,13 @@ class ChatLocalDataSourceImpl implements ChatLocalDataSource {
       return decoded.map((e) => ChatsModel.fromJson(e)).toList();
     }
 
-    return [
+    final initialChats = [
       ChatsModel(
           id: 'room_1',
           members: [myUserId, 'user_friend_1'],
           lastMessage: 'Hello Eman!',
-          lastMessageTime: DateTime.now().subtract(const Duration(minutes: 5)),
-          createdAt: DateTime.now().subtract(const Duration(days: 1)),
+          lastMessageTime: DateTime.now(),
+          createdAt: DateTime.now(),
           friendName: 'Eman',
           friendImage:
               'https://i.pinimg.com/474x/36/62/27/36622753a0080a44c99f612d3267363e.jpg',
@@ -44,8 +44,8 @@ class ChatLocalDataSourceImpl implements ChatLocalDataSource {
           id: 'room_2',
           members: [myUserId, 'user_friend_2'],
           lastMessage: 'Are we meeting today?',
-          lastMessageTime: DateTime.now().subtract(const Duration(hours: 2)),
-          createdAt: DateTime.now().subtract(const Duration(days: 2)),
+          lastMessageTime: DateTime.now(),
+          createdAt: DateTime.now(),
           friendName: 'Sara',
           friendImage:
               'https://i.pinimg.com/736x/d1/9a/54/d19a541df3a90920b7674edbb45203fe.jpg',
@@ -56,8 +56,8 @@ class ChatLocalDataSourceImpl implements ChatLocalDataSource {
           id: 'room_3',
           members: [myUserId, 'user_friend_3'],
           lastMessage: 'Send me the photo please.',
-          lastMessageTime: DateTime.now().subtract(const Duration(hours: 1)),
-          createdAt: DateTime.now().subtract(const Duration(days: 8)),
+          lastMessageTime: DateTime.now(),
+          createdAt: DateTime.now(),
           friendName: 'Reham',
           friendImage:
               'https://i.pinimg.com/736x/fc/49/1a/fc491a087bc3aa2a36cf6b713715fb1c.jpg',
@@ -77,6 +77,11 @@ class ChatLocalDataSourceImpl implements ChatLocalDataSource {
           phone: '1234325643',
           countryCode: '+20'),
     ];
+
+    final jsonList = initialChats.map((e) => e.toJson()).toList();
+    hiveHelper.saveData(key: 'all_chats', value: jsonEncode(jsonList));
+
+    return initialChats;
   }
 
   @override
